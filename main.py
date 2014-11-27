@@ -29,11 +29,18 @@ def terminate():
 	sys.exit()
 
 while True:
+	# Fill the screen
 	screen.fill(constants.BLACK)
+
+	# Display the game objects
 	for paddle in paddle_list:
 		screen.blit(paddle.image, (paddle.rect.x, paddle.rect.y))
 	screen.blit(ball.image, (ball.rect.x, ball.rect.y))
+
+	# Display the score board
 	screen.blit(scoreBoard.text, scoreBoard.rect)
+	
+	# Game events
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			terminate()
@@ -57,6 +64,8 @@ while True:
 				paddle2.change_y += 6
 			elif event.key == K_DOWN:
 				paddle2.change_y -= 6
+
+	# Updates the game objects
 	for paddle in paddle_list:
 		paddle.update()
 	ball.update()
