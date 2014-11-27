@@ -1,6 +1,7 @@
 # Programmed by Nathan Yong
 import pygame, sys
 import constants
+import text_functions
 from pygame.locals import *
 from paddle import Paddle
 from ball import Ball
@@ -59,6 +60,18 @@ while True:
 	for paddle in paddle_list:
 		paddle.update()
 	ball.update()
+	if ball.rect.right >= constants.screen_width or ball.rect.x <= 0:
+		if ball.change_x >= 0:
+			paddle1.score += 1
+		else:
+			paddle2.score += 1
+		ball.rect.topleft = (constants.screen_width/2, constants.screen_height/2)
+		if paddle1.score >= 3 or paddle2.score >= 3:
+			scoreBoard.update(str(paddle1.score) + " | " + str(paddle2.score))
+			text_functions.showText("Game Over", (constants.screen_width/2, constants.screen_height/2), screen)
+			pygame.time.wait(500)
+			pygame.display.update()
+			terminate()
 	scoreBoard.update(str(paddle1.score) + " | " + str(paddle2.score))
 	pygame.display.update()
 	clock.tick(constants.fps)
