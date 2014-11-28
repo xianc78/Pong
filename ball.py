@@ -15,6 +15,16 @@ class Ball:
 		self.rect.x += self.change_x
 		for paddle in self.paddle_list:
 			if self.rect.colliderect(paddle.rect):
+				if paddle.change_y != 0:
+					if self.change_y > 0:
+						self.change_y += 2
+					else:
+						self.change_y -= 2
+				else:
+					if self.change_y > 0:
+						self.change_y += 2
+					else:
+						self.change_y -= -2
 				self.change_x *= -1
 		'''		
 		if self.rect.x >= constants.screen_width or self.rect.right <= 0:
