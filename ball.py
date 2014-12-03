@@ -8,8 +8,8 @@ class Ball:
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
-		self.change_x = random.choice([-8, 8])
-		self.change_y = random.choice([-8, 8])
+		self.change_x = random.choice([-6, 6])
+		self.change_y = random.choice([-6, 6])
 
 	def update(self):
 		self.rect.x += self.change_x

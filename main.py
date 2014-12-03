@@ -1,5 +1,5 @@
 # Programmed by Nathan Yong
-import pygame, sys
+import pygame, sys, random
 import constants
 import text_functions
 from pygame.locals import *
@@ -13,7 +13,7 @@ pygame.display.set_caption("Pong")
 
 clock = pygame.time.Clock()
 
-ball = Ball(constants.screen_width/2, constants.screen_height/2)
+ball = Ball(random.randint(0, 800), random.randint(0, 600))
 
 paddle1 = Paddle(10, constants.screen_height/2)
 paddle2 = Paddle(780, constants.screen_height/2)
@@ -74,8 +74,10 @@ while True:
 			paddle1.score += 1
 		else:
 			paddle2.score += 1
-		ball.rect.topleft = (constants.screen_width/2, constants.screen_height/2)
-		if paddle1.score >= 3 or paddle2.score >= 3:
+		ball.change_x = 6
+		ball.change_y = 6
+		ball.rect.topleft = (random.randint(0, 800), random.randint(0, 600))
+		if paddle1.score >= 10 or paddle2.score >= 10:
 			scoreBoard.update(str(paddle1.score) + " | " + str(paddle2.score))
 			text_functions.showText("Game Over", (constants.screen_width/2, constants.screen_height/2), screen)
 			pygame.time.wait(500)
